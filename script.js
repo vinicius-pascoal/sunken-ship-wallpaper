@@ -38,10 +38,55 @@ function createBubble() {
   }, duration * 1000);
 }
 
-// Criar bolhas continuamente
-setInterval(createBubble, 500);
+// Criar bolhas continuamente (reduzido ao mínimo)
+setInterval(createBubble, 4000); // Uma bolha a cada 4 segundos
 
-// Criar algumas bolhas iniciais
-for (let i = 0; i < 10; i++) {
-  setTimeout(createBubble, i * 200);
+// Criar algumas bolhas iniciais (mínimo)
+for (let i = 0; i < 2; i++) {
+  setTimeout(createBubble, i * 1500);
+}
+
+// Função para criar partículas flutuantes
+function createParticle() {
+  const particle = document.createElement('div');
+  particle.className = 'particle';
+
+  // Tamanho aleatório pequeno
+  const size = Math.random() * 4 + 2; // 2px a 6px
+  particle.style.width = `${size}px`;
+  particle.style.height = `${size}px`;
+
+  // Posição inicial aleatória
+  const startX = Math.random() * 100;
+  const startY = Math.random() * 100;
+  particle.style.left = `${startX}%`;
+  particle.style.top = `${startY}%`;
+
+  // Movimento aleatório
+  const driftX = (Math.random() - 0.5) * 200;
+  const driftY = (Math.random() - 0.5) * 150;
+  particle.style.setProperty('--drift-x', `${driftX}px`);
+  particle.style.setProperty('--drift-y', `${driftY}px`);
+
+  // Duração da animação aleatória
+  const duration = Math.random() * 15 + 10; // 10s a 25s
+  particle.style.animationDuration = `${duration}s`;
+
+  const container = document.getElementById('particles-container');
+  if (container) {
+    container.appendChild(particle);
+  }
+
+  // Remover partícula após a animação
+  setTimeout(() => {
+    particle.remove();
+  }, duration * 1000);
+}
+
+// Criar partículas continuamente
+setInterval(createParticle, 300);
+
+// Criar algumas partículas iniciais
+for (let i = 0; i < 30; i++) {
+  setTimeout(createParticle, i * 100);
 }
