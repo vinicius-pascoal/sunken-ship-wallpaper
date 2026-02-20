@@ -90,3 +90,32 @@ setInterval(createParticle, 300);
 for (let i = 0; i < 30; i++) {
   setTimeout(createParticle, i * 100);
 }
+
+// Função para atualizar o relógio
+function updateClock() {
+  const now = new Date();
+
+  // Formatar hora
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const seconds = String(now.getSeconds()).padStart(2, '0');
+  const timeString = `${hours}:${minutes}:${seconds}`;
+
+  // Formatar data
+  const days = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+  const months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+
+  const dayName = days[now.getDay()];
+  const day = now.getDate();
+  const month = months[now.getMonth()];
+  const year = now.getFullYear();
+  const dateString = `${dayName}, ${day} ${month} ${year}`;
+
+  // Atualizar elementos
+  document.getElementById('time').textContent = timeString;
+  document.getElementById('date').textContent = dateString;
+}
+
+// Atualizar relógio imediatamente e a cada segundo
+updateClock();
+setInterval(updateClock, 1000);
