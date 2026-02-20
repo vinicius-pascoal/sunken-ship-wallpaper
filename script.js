@@ -119,3 +119,22 @@ function updateClock() {
 // Atualizar relógio imediatamente e a cada segundo
 updateClock();
 setInterval(updateClock, 1000);
+
+// Easter egg: Submarino aparece a cada 30 minutos
+function showSubmarineEasterEgg() {
+  const submarine = document.getElementById('submarine');
+  if (submarine) {
+    submarine.classList.add('active');
+
+    // Ocultar após a animação terminar (25 segundos)
+    setTimeout(() => {
+      submarine.classList.remove('active');
+    }, 25000);
+  }
+}
+
+// Mostrar submarino ao carregar a página
+showSubmarineEasterEgg();
+
+// Mostrar submarino a cada 30 minutos (1.800.000 ms)
+setInterval(showSubmarineEasterEgg, 30 * 60 * 1000);

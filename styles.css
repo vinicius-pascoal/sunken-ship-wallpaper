@@ -278,6 +278,50 @@ body {
   }
 }
 
+#submarine {
+  position: absolute;
+  width: 250px;
+  height: auto;
+  z-index: 2;
+  top: 25%;
+  left: 100%;
+  animation: submarine-cruise 25s linear;
+  transform-origin: center;
+  filter: brightness(0.7) contrast(0.9) saturate(0.8) hue-rotate(10deg) sepia(0.2);
+  opacity: 0;
+  pointer-events: none;
+}
+
+#submarine.active {
+  opacity: 1;
+}
+
+@keyframes submarine-cruise {
+  0% {
+    left: 100%;
+    transform: scaleX(1);
+    top: 25%;
+  }
+
+  50% {
+    left: -300px;
+    transform: scaleX(1);
+    top: 30%;
+  }
+
+  50.1% {
+    left: -300px;
+    transform: scaleX(-1);
+    top: 30%;
+  }
+
+  100% {
+    left: 100%;
+    transform: scaleX(-1);
+    top: 25%;
+  }
+}
+
 #bubbles-container {
   position: absolute;
   top: 0;
